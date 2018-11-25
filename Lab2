@@ -1,0 +1,133 @@
+## 1. Створить вектор v із 100 елементів командою v <- rnorm(100). Для цього вектору виведіть: 
+## 10-й елемент; елементи з 10-го по 20-й включно; 10 елементів починаючи з 20-го; елементи більше 0.
+
+## Lab 2
+slcr<-'\n--------\n'
+nsbp<-'\n'
+
+#Part 1
+cat(slcr, 'Part 1', slcr, nsbp)
+
+vec_1<-rnorm(100)
+el_idx_10<-vec_1[10]
+cat('10th element of vector ', el_idx_10, nsbp)
+
+el_range <- vec_1[10:20]
+cat('Range 10-20', el_range, nsbp)
+
+el_range_up <- vec_1[20:29]
+cat('Get 10 el`s from 20', el_range_up, nsbp)
+
+el_range_not_0 <- vec_1[vec_1 > 0]
+cat('Get el`s greater than 0', el_range_not_0, nsbp)
+
+## Get el`s greater than 0 0.08608075 0.7549395 0.6615437 0.6459783 0.1272193 0.8004756 0.6176456 
+## 0.2239392 0.652913 0.4878501 0.3015298 0.5329983 1.15579 1.320313 1.536347 0.1747395 0.5885437 
+## 1.888625 0.04169073 0.7990651 0.9112251 1.274276 1.19676 0.0223031 0.1780457 1.032739 0.2709874 
+## 0.3296847 0.5830765 1.906268 0.5302616 0.9562013 0.6256964 0.5805217 1.833399 0.8980031 0.727842 
+##0.03669655 1.317185 0.1663398 0.2677411 0.252481 0.09808528 1.544001 0.7586587 0.183434 0.1722699 
+## 1.313762 1.043162 1.991017 0.3826 0.003250701 0.7615514 0.7781805 1.303762
+
+## 2. Створити фрейм (data frame) y командою y <- data.frame(a = rnorm(100), b = 1:100, cc = sample(letters, 100, replace = TRUE)). 
+## Для цього data frame виведіть: останні 10 строк; строки з 10 по 20 включно; 10-й елемент стовпця b; 
+## повністю стовпець cc, при цьому використайте ім’я стовпця.
+
+#Part 2
+cat(slcr, 'Part 2', slcr, nsbp)
+
+dframe<-data.frame(a = rnorm(100), b = 1:100, cc = sample(letters, 100, replace = TRUE))
+df_last_10<-tail(dframe, 10)
+print(df_last_10)
+
+cat(slcr, nsbp)
+
+df_10_20 <- dframe[10:20,]
+print(df_10_20)
+
+cat(slcr, nsbp)
+
+df_10b <- dframe[10, 2]
+cat('Get 10th el col b:', df_10b, nsbp)
+
+df_cc <- dframe[, 'cc']
+print(df_cc)
+
+## > dframe<-data.frame(a = rnorm(100), b = 1:100, cc = sample(letters, 100, replace = TRUE))
+##> df_last_10<-tail(dframe, 10)
+##> print(df_last_10)
+##               a   b cc
+##91  -0.978562560  91  n
+##92  -0.292836669  92  s
+##93   0.533871302  93  g
+##94   1.398664841  94  b
+##95  -0.001351328  95  q
+##96   1.537764011  96  b
+##97  -1.247517987  97  a
+##98  -0.220567423  98  z
+##99   0.913174316  99  j
+##100 -0.652464328 100  m
+ 
+##> cat(slcr, nsbp)
+
+--------
+  
+##> df_10_20 <- dframe[10:20,]
+##> print(df_10_20)
+##            a  b cc
+##10  0.8771896 10  w
+##11 -1.0201560 11  g
+##12  1.6573568 12  u
+##13  1.3720804 13  t
+##14 -1.4738092 14  d
+##15 -0.5952459 15  t
+##16  0.4614473 16  z
+##17  0.7556824 17  k
+##18  0.3961570 18  j
+##19  0.3068092 19  k
+##20 -0.9667161 20  c
+ 
+##> cat(slcr, nsbp)
+
+--------
+ 
+##> df_10b <- dframe[10, 2]
+##> cat('Get 10th el col b:', df_10b, nsbp)
+##Get 10th el col b: 10 
+ 
+##> df_cc <- dframe[, 'cc']
+##> print(df_cc)
+##  [1] l x c p h o o e t w g u t d t z k j k c m d d p u y f s j k i q t n t n n c
+## [39] x j z p m e h n q k d y p t p v t e d t v y u c d a w i a k m o j e n q x q
+## [77] x f z n j c t m z d t i w b n s g b q b a z j m
+##Levels: a b c d e f g h i j k l m n o p q s t u v w x y z
+
+##3. Створити вектор z з елементами 1, 2, 3, NA, 4, NA, 5, NA. Для цього вектору: 
+##виведіть всі елементи, які не NA; підрахуйте середнє значення всіх елементів цього вектору без NA значень та з NA значеннями.
+
+#Part 3
+cat(slcr, 'Part 3', slcr, nsbp)
+
+vec_2<-c(1, 2, 3, NA, 4, NA, 5, NA)
+
+v_not_na<-na.omit(vec_2)
+cat('Exclude NA:', v_not_na, nsbp)
+
+v_avg_not_na<-mean(vec_2, na.rm = TRUE)
+cat('AVG excluded NA:', v_avg_not_na, nsbp)
+
+v_avg_na<-mean(vec_2, na.rm = FALSE)
+cat('AVG included NA:', v_avg_na, nsbp)
+
+##> vec_2<-c(1, 2, 3, NA, 4, NA, 5, NA)
+ 
+##> v_not_na<-na.omit(vec_2)
+##> cat('Exclude NA:', v_not_na, nsbp)
+## Exclude NA: 1 2 3 4 5 
+
+##> v_avg_not_na<-mean(vec_2, na.rm = TRUE)
+##> cat('AVG excluded NA:', v_avg_not_na, nsbp)
+## AVG excluded NA: 3 
+ 
+##> v_avg_na<-mean(vec_2, na.rm = FALSE)
+##> cat('AVG included NA:', v_avg_na, nsbp)
+## AVG included NA: NA
