@@ -12,11 +12,17 @@ vec_1<-rnorm(100)
 el_idx_10<-vec_1[10]
 cat('10th element of vector ', el_idx_10, nsbp)
 
+## 10th element of vector  -0.08051548
+
 el_range <- vec_1[10:20]
 cat('Range 10-20', el_range, nsbp)
 
+## Range 10-20 -0.08051548 -0.8845023 0.1903238 -1.129138 1.605948 1.077804 -0.09987662 -0.7023196 -0.03617872 -1.735113 -0.1165482 
+
 el_range_up <- vec_1[20:29]
 cat('Get 10 el`s from 20', el_range_up, nsbp)
+
+## Get 10 el`s from 20 -0.1165482 -0.5056925 -0.8906687 0.8906069 -0.09253179 -0.8071535 1.444409 0.7718789 1.018201 1.015012
 
 el_range_not_0 <- vec_1[vec_1 > 0]
 cat('Get el`s greater than 0', el_range_not_0, nsbp)
@@ -41,38 +47,6 @@ print(df_last_10)
 
 cat(slcr, nsbp)
 
-df_10_20 <- dframe[10:20,]
-print(df_10_20)
-
-cat(slcr, nsbp)
-
-df_10b <- dframe[10, 2]
-cat('Get 10th el col b:', df_10b, nsbp)
-
-df_cc <- dframe[, 'cc']
-print(df_cc)
-
-## > dframe<-data.frame(a = rnorm(100), b = 1:100, cc = sample(letters, 100, replace = TRUE))
-##> df_last_10<-tail(dframe, 10)
-##> print(df_last_10)
-##               a   b cc
-##91  -0.978562560  91  n
-##92  -0.292836669  92  s
-##93   0.533871302  93  g
-##94   1.398664841  94  b
-##95  -0.001351328  95  q
-##96   1.537764011  96  b
-##97  -1.247517987  97  a
-##98  -0.220567423  98  z
-##99   0.913174316  99  j
-##100 -0.652464328 100  m
- 
-##> cat(slcr, nsbp)
-
---------
-  
-##> df_10_20 <- dframe[10:20,]
-##> print(df_10_20)
 ##            a  b cc
 ##10  0.8771896 10  w
 ##11 -1.0201560 11  g
@@ -85,17 +59,33 @@ print(df_cc)
 ##18  0.3961570 18  j
 ##19  0.3068092 19  k
 ##20 -0.9667161 20  c
- 
-##> cat(slcr, nsbp)
 
---------
- 
-##> df_10b <- dframe[10, 2]
-##> cat('Get 10th el col b:', df_10b, nsbp)
+df_10_20 <- dframe[10:20,]
+print(df_10_20)
+
+cat(slcr, nsbp)
+
+##             a  b cc
+##10 -0.46479004 10  s
+##11  0.43916049 11  k
+##12  0.01026779 12  t
+##13  0.59237388 13  b
+##14 -1.48009101 14  z
+##15  0.07008439 15  f
+##16 -0.71011129 16  c
+##17  0.99704812 17  v
+##18 -2.06116310 18  d
+##19 -0.46393945 19  m
+##20 -0.52289555 20  y
+
+df_10b <- dframe[10, 2]
+cat('Get 10th el col b:', df_10b, nsbp)
+
 ##Get 10th el col b: 10 
- 
-##> df_cc <- dframe[, 'cc']
-##> print(df_cc)
+
+df_cc <- dframe[, 'cc']
+print(df_cc)
+
 ##  [1] l x c p h o o e t w g u t d t z k j k c m d d p u y f s j k i q t n t n n c
 ## [39] x j z p m e h n q k d y p t p v t e d t v y u c d a w i a k m o j e n q x q
 ## [77] x f z n j c t m z d t i w b n s g b q b a z j m
@@ -112,22 +102,14 @@ vec_2<-c(1, 2, 3, NA, 4, NA, 5, NA)
 v_not_na<-na.omit(vec_2)
 cat('Exclude NA:', v_not_na, nsbp)
 
+## Exclude NA: 1 2 3 4 5
+
 v_avg_not_na<-mean(vec_2, na.rm = TRUE)
 cat('AVG excluded NA:', v_avg_not_na, nsbp)
+
+## AVG excluded NA: 3
 
 v_avg_na<-mean(vec_2, na.rm = FALSE)
 cat('AVG included NA:', v_avg_na, nsbp)
 
-##> vec_2<-c(1, 2, 3, NA, 4, NA, 5, NA)
- 
-##> v_not_na<-na.omit(vec_2)
-##> cat('Exclude NA:', v_not_na, nsbp)
-## Exclude NA: 1 2 3 4 5 
-
-##> v_avg_not_na<-mean(vec_2, na.rm = TRUE)
-##> cat('AVG excluded NA:', v_avg_not_na, nsbp)
-## AVG excluded NA: 3 
- 
-##> v_avg_na<-mean(vec_2, na.rm = FALSE)
-##> cat('AVG included NA:', v_avg_na, nsbp)
 ## AVG included NA: NA
