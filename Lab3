@@ -1,0 +1,113 @@
+##В лабораторній роботі необхідно написати наступні функції на мові R та вивести результат роботи цих функцій на довільних даних:
+## 1. Функція add2(x, y), яка повертає суму двох чисел.
+
+## Lab 3
+slcr <- '\n--------\n'
+nsbp <- '\n'
+
+#Part 1
+cat(slcr, 'Part 1', slcr, nsbp)
+
+add2 <- function(x, y) {
+  if (!is.numeric(x) || !is.numeric(y)) {
+    stop('Args should be numeric')
+  }
+  return (x + y)
+}
+
+sum_v <- add2(25, 25)
+cat('Check custom add2: ', sum_v, nsbp)
+
+## Check custom add2:  50
+
+##2. Функція above(x, n), яка приймає вектор та число n, та повертає всі елементі вектору, які більше n. По замовчуванню n = 10.
+
+#Part 2
+cat(slcr, 'Part 2', slcr, nsbp)
+
+above <- function(x, n = 10) {
+  if (!is.vector(x)) {
+    stop('X should be a vector type')
+  }
+  if (!is.numeric(n)) {
+    stop('N should be an integer')
+  }
+  
+  return (x[x > n])
+}
+
+vec_1 <-
+  c(-5, 1, 45, -4, 5, -2,-1, 5, -6, 8, -4, 8, -65, -5, 5, 3, -48, 9)
+above_v <- above(vec_1)
+cat('Check custom above: ', above_v, nsbp)
+
+## Check custom above:  45 
+
+##3. Функція my_ifelse(x, exp, n), яка приймає вектор x, порівнює всі його елементи за допомогою exp з n, 
+##та повертає елементи вектору, які відповідають умові expression. 
+##Наприклад, my_ifelse(x, “>”, 0) повертає всі елементи x, які більші 0. 
+##Exp може дорівнювати “<”, “>”, “<=”, “>=”, “==”. Якщо exp не співпадає ні з одним з цих виразів, повертається вектор x.
+
+#Part 3
+cat(slcr, 'Part 3', slcr, nsbp)
+
+my_ifelse <- function(x, exp, n) {
+  if (!is.vector(x)) {
+    stop('X should be a vector type')
+  }
+  switch (
+    exp,
+    '<' = return(x[x < n]),
+    '>' = return(x[x > n]),
+    '<=' = return(x[x <= n]),
+    '>=' = return(x[x >= n]),
+    '==' = return(x[x == n]),
+    {
+      return(x)
+    }
+  )
+}
+
+test_1 <- my_ifelse(vec_1, '>', 0)
+cat('Check custom my-ifelse > 0: ', test_1, nsbp)
+
+## Check custom my-ifelse > 0:  1 45 5 5 8 8 5 3 9
+
+test_2 <- my_ifelse(vec_1, '<', 0)
+cat('Check custom my-ifelse < 0: ', test_2, nsbp)
+
+## Check custom my-ifelse < 0:  -5 -4 -2 -1 -6 -4 -65 -5 -48
+
+test_3 <- my_ifelse(vec_1, '>=', 1)
+cat('Check custom my-ifelse >= 1: ', test_3, nsbp)
+
+## Check custom my-ifelse >= 1:  1 45 5 5 8 8 5 3 9
+
+test_4 <- my_ifelse(vec_1, '<=',-1)
+cat('Check custom my-ifelse <= -1: ', test_4, nsbp)
+
+## Check custom my-ifelse <= -1:  -5 -4 -2 -1 -6 -4 -65 -5 -48
+
+test_5 <- my_ifelse(vec_1, '==', 1)
+cat('Check custom my-ifelse == 1: ', test_5, nsbp)
+
+## Check custom my-ifelse == 1:  1
+
+## 4. Функція columnmean(x, removeNA), яка розраховує середнє значення (mean) по кожному стовпцю матриці, або data frame. 
+## Логічний параметр removeNA вказує, чи видаляти NA значення. По замовчуванню він дорівнює TRUE.
+
+#Part 4
+cat(slcr, 'Part 4', slcr, nsbp)
+
+columnmean <- function(x, removeNA = TRUE) {
+  if (is.data.frame(x) || is.matrix(x)) {
+    return(colMeans(x, na.rm = removeNA))
+  }
+  stop('X should be dataframe or matrix type')
+}
+
+columnmean_v <- columnmean(data.frame(vec_1[1:3], vec_1[4:6], vec_1[7:9], vec_1[10:12]))
+cat('Check custom columnmean', columnmean_v, nsbp)
+
+## Check custom columnmean 13.66667 -0.3333333 -0.6666667 4
+
