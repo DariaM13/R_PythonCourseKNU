@@ -3,8 +3,8 @@
 ## В лабораторній необхідно відповісти на запитання:
 ## 1. Які назви стовпців файлу даних?
 
-```r
 ## Lab 4
+```
 slcr <- '\n--------\n'
 nsbp <- '\n'
 
@@ -20,7 +20,7 @@ cat('Column names: ', th, nsbp)
 # Column names:  Ozone Solar.R Wind Temp Month Day
 
 ## 2. Виведіть перші 6 строк фрейму даних.
-```r
+```
 #Part 2
 cat(slcr, 'Part 2', slcr, nsbp)
 
@@ -38,7 +38,7 @@ print(f_first_6th)
 #6    28      NA 14.9   66     5   6
 
 ## 3. Скільки спостерігань (строк) в дата фреймі?
-```r
+```
 #Part 3
 cat(slcr, 'Part 3', slcr, nsbp)
 
@@ -48,7 +48,7 @@ cat('Count rows: ', f_rows_lenght, nsbp)
 # Count rows:  153
 
 ## 4. Виведіть останні 10 строк дата фрейму.
-```r
+```
 #Part 4
 cat(slcr, 'Part 4', slcr, nsbp)
 
@@ -69,7 +69,7 @@ print(f_rows_last_10)
 #153    20     223 11.5   68     9  30
 
 ## 5. Як багато значень «NA» в стовпці «Ozone»?
-```r
+```
 #Part 5
 cat(slcr, 'Part 5', slcr, nsbp)
 
@@ -79,7 +79,7 @@ cat('Count NA in Ozone: ', f_count_NA_in_ozone, nsbp)
 # Count NA in Ozone:  37
 
 ## 6. Яке середнє (mean) стовпця «Ozone». Виключити «NA» значення.
-```r
+```
 #Part 6
 cat(slcr, 'Part 6', slcr, nsbp)
 
