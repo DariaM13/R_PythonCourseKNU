@@ -1,0 +1,124 @@
+## Для лабораторної роботи необхідно завантажити файл з даними за посиланням: 
+## «https://www.dropbox.com/s/8k1gjgk8cflmpb6/hw1_data.csv?dl=0».В RStudio файл необхідно прочитати за допомогою команди read.csv.
+## В лабораторній необхідно відповісти на запитання:
+## 1. Які назви стовпців файлу даних?
+
+```r
+## Lab 4
+slcr <- '\n--------\n'
+nsbp <- '\n'
+
+cat(slcr, 'READ FILE', slcr, nsbp)
+file <- read.csv(file = 'C:/Users/Daria/Desktop/Master/R&Python/labs/hw1_data.csv')
+
+#Part 1
+cat(slcr, 'Part 1', slcr, nsbp)
+
+th <- names(file)
+cat('Column names: ', th, nsbp)
+```
+# Column names:  Ozone Solar.R Wind Temp Month Day
+
+## 2. Виведіть перші 6 строк фрейму даних.
+```r
+#Part 2
+cat(slcr, 'Part 2', slcr, nsbp)
+
+f_first_6th <- file[1:6, ]
+cat('First 6 row: ')
+print(f_first_6th)
+```
+# First 6 row: > print(f_first_6th)
+#  Ozone Solar.R Wind Temp Month Day
+#1    41     190  7.4   67     5   1
+#2    36     118  8.0   72     5   2
+#3    12     149 12.6   74     5   3
+#4    18     313 11.5   62     5   4
+#5    NA      NA 14.3   56     5   5
+#6    28      NA 14.9   66     5   6
+
+## 3. Скільки спостерігань (строк) в дата фреймі?
+```r
+#Part 3
+cat(slcr, 'Part 3', slcr, nsbp)
+
+f_rows_lenght <- nrow(file)
+cat('Count rows: ', f_rows_lenght, nsbp)
+```
+# Count rows:  153
+
+## 4. Виведіть останні 10 строк дата фрейму.
+```r
+#Part 4
+cat(slcr, 'Part 4', slcr, nsbp)
+
+f_rows_last_10 <- tail(file, 10)
+cat('Last 10: ', slcr)
+print(f_rows_last_10)
+```
+# Ozone Solar.R Wind Temp Month Day
+#144    13     238 12.6   64     9  21
+#145    23      14  9.2   71     9  22
+#146    36     139 10.3   81     9  23
+#147     7      49 10.3   69     9  24
+#148    14      20 16.6   63     9  25
+#149    30     193  6.9   70     9  26
+#150    NA     145 13.2   77     9  27
+#151    14     191 14.3   75     9  28
+#152    18     131  8.0   76     9  29
+#153    20     223 11.5   68     9  30
+
+## 5. Як багато значень «NA» в стовпці «Ozone»?
+```r
+#Part 5
+cat(slcr, 'Part 5', slcr, nsbp)
+
+f_count_NA_in_ozone <- sum(is.na(file$Ozone))
+cat('Count NA in Ozone: ', f_count_NA_in_ozone, nsbp)
+```
+# Count NA in Ozone:  37
+
+## 6. Яке середнє (mean) стовпця «Ozone». Виключити «NA» значення.
+```r
+#Part 6
+cat(slcr, 'Part 6', slcr, nsbp)
+
+f_mean_ozone <- mean(file$Ozone, na.rm = TRUE)
+cat('Mean for Ozone: ', f_mean_ozone, nsbp)
+```
+# Mean for Ozone:  42.12931
+
+## 7. Виведіть частину набору даних (subset) зі значенням «Ozone» > 31 та «Temp» > 90. 
+## Яке середнє (mean) значень «Solar.R» в цьому наборі даних (subset)?
+```r 
+#Part 7
+cat(slcr, 'Part 7', slcr, nsbp)
+
+f_subset <- file[!is.na(file$Ozone & file$Temp) & (file$Ozone > 31 & file$Temp > 90),]
+print(f_subset)
+f_subset_mean_solar<- mean(f_subset$Solar.R, na.rm = TRUE)
+cat('Mean for Solar: ', f_subset_mean_solar, nsbp)
+```
+# Mean for Solar:  212.8
+
+## 8. Яке середнє значення (mean) для «Temp» для червня («Month» дорівнює 6)?
+```r
+#Part 8
+cat(slcr, 'Part 8', slcr, nsbp)
+
+f_subset_temp_June<-file[file$Month == 6,]$Temp
+f_mean_Temp_June<-mean(f_subset_temp_June, na.rm = TRUE)
+cat('Mean for Temp in June: ', f_mean_Temp_June, nsbp)
+```
+# Mean for Temp in June:  79.1
+
+## 9. Яке максимальне значення «Ozone» для травня («Month» дорівнює 5)?
+```r
+#Part 9
+cat(slcr, 'Part 9', slcr, nsbp)
+
+f_subset_temp_May<-file[file$Month == 5,]$Ozone
+f_max_Ozone_May<-max(f_subset_temp_May, na.rm = TRUE)
+cat('MAX for Ozone in May: ', f_max_Ozone_May, nsbp)
+```
+# MAX for Ozone in May:  115
