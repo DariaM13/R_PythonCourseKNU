@@ -1,0 +1,143 @@
+## Lab 6
+##v1. Створити матрицю mat з 5 стовпцями та 10 строками за допомогою matrix з випадковими даними (функція rnorm(50)).
+```r
+slcr <- '\n--------\n'
+nsbp <- '\n'
+
+#Part 1
+cat(slcr, 'Part 1', slcr, nsbp)
+
+mx <- matrix(rnorm(50),
+             ncol = 5,
+             nrow = 5,
+             byrow = TRUE)
+
+max_v <- apply(mx, 2, max)
+cat(' max Value of columns:', max_v)
+```
+# max Value of columns: 1.105585 1.34401 1.10852 1.322419 0.7639801
+
+## 2. Знайти максимальне значення в кожному стовпці.
+#Part 2
+```r
+cat(slcr, 'Part 2', slcr, nsbp)
+
+mean_v <- apply(mx, 2, mean)
+cat('mean Value of columns:', mean_v)
+```
+# mean Value of columns: 0.7060645 0.1199063 -0.01554903 0.2627428 0.008731477
+
+## 3. Знайти середнє (mean) значення кожного стовпця.
+
+#Part 3
+```r
+cat(slcr, 'Part 3', slcr, nsbp)
+
+min_v <- apply(mx, 2, min)
+cat(' max Value of columns:', min_v)
+```
+# max Value of columns: 0.1741967 -0.945084 -0.7309961 -0.647969 -0.5299794
+
+## 4. Знайти мінімальне значення в кожному рядку.
+
+#Part 4
+```r
+cat(slcr, 'Part 4', slcr, nsbp)
+
+min_v <- apply(mx, 2, min)
+cat(' min Value of columns:', min_v)
+```
+# min Value of columns: 0.1741967 -0.945084 -0.7309961 -0.647969 -0.5299794
+
+## 5. Відсортувати кожен стовбець таблиці.
+
+#Part 5
+```r
+cat(slcr, 'Part 5', slcr, nsbp)
+
+sort_v <- apply(mx, 2, sort)
+cat('sort Value of columns:', sort_v)
+```
+# sort Value of columns: 0.1741967 0.5546378 0.7814784 0.914425 1.105585 -0.945084 -0.8135974 0.3986979 0.6155044 1.34401 
+-0.7309961 -0.7033543 -0.1985099 0.4465947 1.10852 -0.647969 0.0983773 0.2534194 0.2874668 1.322419 -0.5299794 -0.310107 
+-0.2380478 0.3578115 0.7639801
+
+## 6. Знайти кількість значень < 0 для кожного стовпця. Використати свою функцію.
+
+#Part 6
+cat(slcr, 'Part 6', slcr, nsbp)
+
+less_v <- apply(mx, 2, function(x)
+  sum(x < 0))
+cat('count values less than 0 by columns:', less_v)
+
+# count values less than 0 by columns: 0 2 3 1 3
+
+## 7. Вивести вектор з булевими значеннями TRUE та FALSE. TRUE, якщо в стовпці є елементи >2, FALSE – якщо немає.
+
+#Part 7
+cat(slcr, 'Part 7', slcr, nsbp)
+
+greater_v <- apply(mx, 2, function(x)
+  any(x > 2))
+cat('bool vector greater than 2 by columns:', greater_v)
+
+# bool vector greater than 2 by columns: FALSE FALSE FALSE FALSE FALSE
+
+## 8. Створить список list1 <- list(observationA = c(1:5, 7:3), observationB = matrix(1:6, nrow=2)). 
+## Для цього списку знайдіть sum за допомогою lapply.
+
+#Part 8
+cat(slcr, 'Part 8', slcr, nsbp)
+
+list1 <-  list(observationA = c(1:5, 7:3),
+               observationB =
+                 matrix(1:6, nrow = 2))
+
+sum_v <- unlist(
+  lapply(list1, function(x)
+  sum(x)))
+cat('sum list', nsbp)
+print(sum_v)
+
+# sum list 
+#> print(sum_v)
+#observationA observationB 
+#          40           21 
+
+## 9. Для кожного елементу списку list1 знайдіть максимальне та мінімальне значення (range) за допомогою lapply та sapply.
+
+#Part 9
+cat(slcr, 'Part 9', slcr, nsbp)
+
+max_min_v <-
+  unlist(
+    lapply(list1, function(x)
+    paste('min:', min(x), 'max:', max(x))))
+cat('sum list', nsbp)
+print(max_min_v)
+
+#sum list 
+#> print(max_min_v)
+#   observationA    observationB 
+#"min: 1 max: 7" "min: 1 max: 6" 
+
+## Для вбудованого набору даних InsectSprays знайти середнє count для кожного spray.
+
+#Part 10
+cat(slcr, 'Part 10', slcr, nsbp)
+
+split_v <- split(InsectSprays, InsectSprays$spray)
+
+mean_v <- unlist(
+  lapply(split_v, function(x) {
+  mean(x$count)
+}))
+
+cat('mean InsectSprays', nsbp)
+print(mean_v)
+
+# mean InsectSprays 
+# > print(mean_v)
+#        A         B         C         D         E         F 
+#14.500000 15.333333  2.083333  4.916667  3.500000 16.666667 
